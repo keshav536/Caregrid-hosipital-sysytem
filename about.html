@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn about CareGrid Hospital's mission, values, facilities, clinical achievements, and timeline.">
+  <title>About Us - CareGrid HMS</title>`n  <!-- Anti-FOUC: apply theme before CSS renders -->`n  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');</script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Loader Screen -->
+  <div id="loader" class="loader-overlay">
+    <div class="loader">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">CareGrid HMS...</div>
+    </div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div id="scroll-progress" class="scroll-progress"></div>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="logo">
+        <i class="fas fa-hospital-alt"></i> CareGrid
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="departments.html" class="nav-link">Departments</a>
+        <a href="doctors.html" class="nav-link">Doctors</a>
+        <a href="patients.html" class="nav-link">Patients</a>
+        <a href="appointments.html" class="nav-link">Appointments</a>
+        <a href="prescriptions.html" class="nav-link">Prescriptions</a>
+        <a href="billing.html" class="nav-link">Billing</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="theme-toggle" class="nav-btn" aria-label="Toggle Dark Mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <a href="appointments.html" class="btn btn-book">Book Now</a>
+        <button class="mobile-nav-toggle" aria-label="Open Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <div class="breadcrumb-container">
+    <div class="container breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right" style="font-size: 0.75rem;"></i></span>
+      <span class="breadcrumb-current">About Us</span>
+    </div>
+  </div>
+
+  <!-- Introduction -->
+  <section class="section-padding">
+    <div class="container intro-grid">
+      <div class="intro-content">
+        <span class="section-tag">Since 2012</span>
+        <h3>CareGrid Hospital Introduction</h3>
+        <p>CareGrid Hospital is a premier healthcare institution providing general medicine, specialized surgeries, and state-of-the-art diagnostic testing. Founded with the vision of offering high-quality clinical care combined with modern administration platforms, we serve thousands of patients annually.</p>
+        <p>Our digital framework integrates clinical departments with diagnostic labs, pharmacy counters, and billing divisions to eliminate administrative bottlenecks, allowing clinicians to focus solely on diagnostic excellence.</p>
+        
+        <div class="mission-vision">
+          <div class="card" style="padding: 20px;">
+            <h4 style="color:var(--primary); margin-bottom: 8px;"><i class="fas fa-bullseye"></i> Our Mission</h4>
+            <p style="font-size:0.85rem; color:var(--text-muted); line-height: 1.6;">To deliver advanced healthcare services with diagnostic precision, clinical compassion, and professional efficiency.</p>
+          </div>
+          <div class="card" style="padding: 20px;">
+            <h4 style="color:var(--accent); margin-bottom: 8px;"><i class="fas fa-eye"></i> Our Vision</h4>
+            <p style="font-size:0.85rem; color:var(--text-muted); line-height: 1.6;">To set global benchmarks in integrated clinical operations, digital health infrastructure, and outpatient care.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1586773860418-d3b969c7beb5?q=80&w=500&auto=format&fit=crop" alt="Hospital Building" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);">
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="section-padding timeline-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Milestones</span>
+        <h2 class="section-title">Our Growth Timeline</h2>
+        <p class="section-desc">Trace the evolution of CareGrid from a localized clinic to a multi-department digital medical center.</p>
+      </div>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <div class="timeline-year">2012</div>
+            <h4>CareGrid Clinic Inception</h4>
+            <p>Started operations with a 15-bed clinic, 4 primary physicians, and basic pharmacy services.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <div class="timeline-year">2016</div>
+            <h4>Specialty Department Expansion</h4>
+            <p>Inaugurated dedicated cardiology, neurology, and orthopedic surgical divisions. Increased capacity to 100 beds.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <div class="timeline-year">2020</div>
+            <h4>Full Digitization & Smart Labs</h4>
+            <p>Developed direct HMS local caching database for prescription lists, billing invoice systems, and online scheduling.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <div class="timeline-year">2026</div>
+            <h4>State-of-the-Art Research Center</h4>
+            <p>Opened a certified oncology division, automated MRI/CT imaging labs, and established a 24/7 critical trauma hub.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Facilities -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Infrastructure</span>
+        <h2 class="section-title">Modern Facilities & Units</h2>
+        <p class="section-desc">Our infrastructure is designed for patient comfort, medical safety, and emergency access.</p>
+      </div>
+      
+      <div class="facilities-grid">
+        <div class="card facility-card">
+          <div class="facility-img">
+            <img src="https://images.unsplash.com/photo-1517122497576-47677000c1e8?q=80&w=400&auto=format&fit=crop" alt="Emergency Ward">
+          </div>
+          <div class="facility-info">
+            <h4 class="facility-title">24/7 Trauma Emergency Ward</h4>
+            <p class="facility-desc">Specialized beds equipped with instant ventilation support and trauma surgical devices.</p>
+          </div>
+        </div>
+        <div class="card facility-card">
+          <div class="facility-img">
+            <img src="https://images.unsplash.com/photo-1579684389782-64d84b5e901a?q=80&w=400&auto=format&fit=crop" alt="Smart Laboratories">
+          </div>
+          <div class="facility-info">
+            <h4 class="facility-title">Automated Imaging Labs</h4>
+            <p class="facility-desc">Advanced MRI scanning, ultrasound, digital radiography, and quick diagnostics report generation.</p>
+          </div>
+        </div>
+        <div class="card facility-card">
+          <div class="facility-img">
+            <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?q=80&w=400&auto=format&fit=crop" alt="Intensive Care Unit">
+          </div>
+          <div class="facility-info">
+            <h4 class="facility-title">Intensive Care Units (ICU)</h4>
+            <p class="facility-desc">Constant physiological parameters tracking, high-performance life support setups, and sterile chambers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements Banner -->
+  <section class="newsletter-section" style="background: linear-gradient(135deg, var(--secondary), #1e293b);">
+    <div class="container" style="display:flex; justify-content:space-around; flex-wrap:wrap; gap:30px;">
+      <div style="text-align:center;">
+        <h3 style="font-size:2.5rem; color:var(--accent);">99.2%</h3>
+        <p style="font-size:0.9rem; opacity:0.8;">Surgical Success Rate</p>
+      </div>
+      <div style="text-align:center;">
+        <h3 style="font-size:2.5rem; color:var(--accent);">JCI Acc.</h3>
+        <p style="font-size:0.9rem; opacity:0.8;">International Certification</p>
+      </div>
+      <div style="text-align:center;">
+        <h3 style="font-size:2.5rem; color:var(--accent);">15 Mins</h3>
+        <p style="font-size:0.9rem; opacity:0.8;">Average OPD Wait Time</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="color: white; font-size: 1.5rem; margin-bottom: 20px;">
+          <i class="fas fa-hospital-alt"></i> CareGrid
+        </a>
+        <p>Providing advanced healthcare services, smart digital records, and professional diagnostics since 2012.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <div class="footer-links">
+          <a href="about.html">About Hospital</a>
+          <a href="doctors.html">Our Doctors</a>
+          <a href="appointments.html">Book Appointment</a>
+          <a href="billing.html">Billing Panel</a>
+          <a href="faq.html">FAQs</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Departments</h4>
+        <div class="footer-links">
+          <a href="departments.html">Cardiology</a>
+          <a href="departments.html">Neurology</a>
+          <a href="departments.html">Orthopedics</a>
+          <a href="departments.html">Pediatrics</a>
+          <a href="departments.html">Oncology</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Emergency Contact</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <div>
+            <strong>General Inquiries</strong>
+            <p>+1 (555) 234-5678</p>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-ambulance"></i>
+          <div>
+            <strong>Emergency Hotline</strong>
+            <p>+1 (555) 911-CARE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 CareGrid Hospital Management. All rights reserved.</p>
+      <p>Frontend Project &bull; Standard Static Mockup</p>
+    </div>
+  </footer>
+
+  <button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+/* Responsive CSS Adjustments for CareGrid HMS */
+
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 2.75rem;
+  }
+  
+  .why-grid, 
+  .intro-grid, 
+  .contact-grid, 
+  .appointment-grid, 
+  .billing-grid,
+  .dashboard-charts,
+  .dashboard-recent {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .sidebar {
+    position: fixed;
+    top: var(--navbar-height);
+    left: -280px;
+    width: 260px;
+    height: calc(100vh - var(--navbar-height));
+    z-index: 900;
+    transition: var(--transition);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .sidebar.active {
+    left: 0;
+  }
+  
+  .invoice-preview-card {
+    position: relative;
+    top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    height: 70px;
+  }
+  
+  .navbar {
+    position: relative;
+  }
+  
+  .nav-links {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--card-border);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px 24px;
+    gap: 20px;
+    transition: var(--transition);
+    overflow-y: auto;
+    z-index: 998;
+  }
+  
+  .nav-links.active {
+    left: 0;
+  }
+  
+  .mobile-nav-toggle {
+    display: block;
+    order: 3;
+  }
+  
+  .nav-actions {
+    margin-left: auto;
+    margin-right: 15px;
+    order: 2;
+  }
+  
+  .logo {
+    order: 1;
+  }
+  
+  .hero-title {
+    font-size: 2.25rem;
+  }
+  
+  .hero {
+    padding: 120px 0 80px;
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+  }
+  
+  /* Timeline */
+  .timeline::after {
+    left: 31px;
+  }
+  
+  .timeline-item {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 20px;
+  }
+  
+  .timeline-item::after {
+    left: 23px;
+  }
+  
+  .timeline-item:nth-child(even) {
+    left: 0;
+  }
+  
+  .timeline-item:nth-child(even)::after {
+    left: 23px;
+  }
+  
+  .mission-vision {
+    grid-template-columns: 1fr;
+  }
+  
+  .patient-actions {
+    max-width: 100%;
+  }
+  
+  .dashboard-main {
+    padding: 24px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.85rem;
+  }
+  
+  .hero-desc {
+    font-size: 0.95rem;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .hero-actions .btn {
+    width: 100%;
+  }
+  
+  .section-padding {
+    padding: 50px 0;
+  }
+  
+  .stats-card {
+    padding: 20px;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+}

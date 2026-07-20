@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore clinical, surgical, emergency, and diagnostic departments at CareGrid Hospital.">
+  <title>Departments - CareGrid HMS</title>`n  <!-- Anti-FOUC: apply theme before CSS renders -->`n  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');</script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Loader Screen -->
+  <div id="loader" class="loader-overlay">
+    <div class="loader">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">CareGrid HMS...</div>
+    </div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div id="scroll-progress" class="scroll-progress"></div>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="logo">
+        <i class="fas fa-hospital-alt"></i> CareGrid
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="departments.html" class="nav-link active">Departments</a>
+        <a href="doctors.html" class="nav-link">Doctors</a>
+        <a href="patients.html" class="nav-link">Patients</a>
+        <a href="appointments.html" class="nav-link">Appointments</a>
+        <a href="prescriptions.html" class="nav-link">Prescriptions</a>
+        <a href="billing.html" class="nav-link">Billing</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="theme-toggle" class="nav-btn" aria-label="Toggle Dark Mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <a href="appointments.html" class="btn btn-book">Book Now</a>
+        <button class="mobile-nav-toggle" aria-label="Open Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <div class="breadcrumb-container">
+    <div class="container breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right" style="font-size: 0.75rem;"></i></span>
+      <span class="breadcrumb-current">Departments</span>
+    </div>
+  </div>
+
+  <!-- Departments Grid -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Clinical Divisions</span>
+        <h2 class="section-title">Specialty Wards & Services</h2>
+        <p class="section-desc">CareGrid features 12 advanced operating departments staffed by qualified clinical panels.</p>
+      </div>
+      
+      <!-- Filter Buttons -->
+      <div class="dep-filters">
+        <button class="dep-filter-btn active" data-filter="all">All Departments</button>
+        <button class="dep-filter-btn" data-filter="clinical">Clinical Care</button>
+        <button class="dep-filter-btn" data-filter="surgical">Surgical Wards</button>
+        <button class="dep-filter-btn" data-filter="diagnostics">Diagnostics & Labs</button>
+      </div>
+      
+      <div class="departments-grid">
+        <!-- 1. General Medicine -->
+        <div class="card dep-card" data-type="clinical">
+          <div class="dep-img">
+            <img src="https://images.unsplash.com/photo-1579684389782-64d84b5e901a?q=80&w=400&auto=format&fit=crop" alt="General Medicine">
+            <span class="dep-badge">Clinical</span>
+          </div>
+          <div class="dep-content">
+            <h3 class="dep-title">General Medicine</h3>
+            <p class="dep-desc">Primary diagnostic assessments, routine physical cleanups, medical consultations, and lifestyle management prescriptions.</p>
+            <div class="dep-meta">
+              <span><i class="fas fa-user-md"></i> Dr. Noah Harris</span>
+              <span><i class="fas fa-clock"></i> 8:00 AM - 8:00 PM</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 2. Cardiology -->
+        <div class="card dep-card" data-type="surgical">
+          <div class="dep-img">
+            <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=400&auto=format&fit=crop" alt="Cardiology">
+            <span class="dep-badge">Surgical</span>
+          </div>
+          <div class="dep-content">
+            <h3 class="dep-title">Cardiology</h3>
+            <p class="dep-desc">Angiography testing, pacemaker insertions, heart health evaluations, and coronary disease treatments.</p>
+            <div class="dep-meta">
+              <span><i class="fas fa-user-md"></i> Dr. Sophia Bennett</span>
+              <span><i class="fas fa-clock"></i> 9:00 AM - 5:00 PM</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 3. Orthopedics -->
+        <div class="card dep-card" data-type="surgical">
+          <div class="dep-img">
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=400&auto=format&fit=crop" alt="Orthopedics">
+            <span class="dep-badge">Surgical</span>
+          </div>
+          <div class="dep-content">
+            <h3 class="dep-title">Orthopedics</h3>
+            <p class="dep-desc">Bone fracture settings, joint replacement procedures, orthopedic surgeries, and sports trauma physical therapies.</p>
+            <div class="dep-meta">
+              <span><i class="fas fa-user-md"></i> Dr. Ethan Martinez</span>
+              <span><i class="fas fa-clock"></i> 9:00 AM - 4:00 PM</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 4. Neurology -->
+        <div class="card dep-card" data-type="clinical">
+          <div class="dep-img">
+            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=400&auto=format&fit=crop" alt="Neurology">
+            <span class="dep-badge">Clinical</span>
+          </div>
+          <div class="dep-content">
+            <h3 class="dep-title">Neurology</h3>
+            <p class="dep-desc">CNS/PNS evaluations, diagnostic EEG mappings, stroke interventions, and nerve damage clinical support.</p>
+            <div class="dep-meta">
+              <span><i class="fas fa-user-md"></i> Dr. Liam Anderson</span>
+              <span><i class="fas fa-clock"></i> 10:00 AM - 4:00 PM</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 5. Dermatology -->
+        <div class="card dep-card" data-type="clinical">
+          <div class="dep-img">
+            <img src="https://images.unsplash.com/photo-1614859324967-bdf461fcf76e?q=80&w=400&auto=format&fit=crop" alt="Dermatology">
+            <span class="dep-badge">Clinical</span>
+          </div>
+          <div class="dep-content">
+            <h3 class="dep-title">Dermatology</h3>
+            <p class="dep-desc">Skin allergen tests, minor clinical dermatosurgical removals, eczema therapy, and cosmetic dermatology checks.</p>
+            <div class="dep-meta">
+              <span><i class="fas fa-user-md"></i> Dr. Ava Thomas</span>
+              <span><i class="fas fa-clock"></i> 11:00 AM - 6:00 PM</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 6. Pediatrics -->
+        <div class="card dep-card" data-type="clinical">
+          <div class="dep-img">
+            <img src="https://images.unsplash.com/photo-1594824813573-246434de83fb?q=80&w=400&auto=format&fit=crop" alt="Pediatrics">
+            <span class="dep-badge">Clinical</span>
+          </div>
+          <div class="dep-content">
+            <h3 class="dep-title">Pediatrics</h3>
+            <p class="dep-desc">Infant health charts, pediatric vaccine schedules, general developmental checkups, and child clinical consultations.</p>
+            <div class="dep-meta">
+              <span><i class="fas fa-user-md"></i> Dr. Olivia Taylor</span>
+              <span><i class="fas fa-clock"></i> 9:00 AM - 3:00 PM</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 7. ENT -->
+        <div class="card dep-card" data-type="clinical">
+          <div class="dep-img">
+            <img src="https://images.unsplash.com/photo-1603398938378-e54eab446dde?q=80&w=400&auto=format&fit=crop" alt="ENT">
+            <span class="dep-badge">Clinical</span>
+          </div>
+          <div class="dep-content">
+            <h3 class="dep-title">ENT</h3>
+            <p class="dep-desc">Diagnostics for ear canal problems, sinus drainage checkups, auditory testing, and vocal path consultations.</p>
+            <div class="dep-meta">
+              <span><i class="fas fa-user-md"></i> Dr. Isabella White</span>
+              <span><i class="fas fa-clock"></i> 10:00 AM - 5:00 PM</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 8. Gynecology -->
+        <div class="card dep-card" data-type="surgical">
+          <div class="dep-img">
+            <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=400&auto=format&fit=crop" alt="Gynecology">
+            <span class="dep-badge">Surgical</span>
+          </div>
+          <div class="dep-content">
+            <h3 class="dep-title">Gynecology</h3>
+            <p class="dep-desc">Maternal ultrasound diagnostics, prenatal development plans, standard labor wards support, and gynecological surgeries.</p>
+            <div class="dep-meta">
+              <span><i class="fas fa-user-md"></i> Dr. Lucas Martin</span>
+              <span><i class="fas fa-clock"></i> 8:30 AM - 4:30 PM</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 9. Psychiatry -->
+        <div class="card dep-card" data-type="clinical">
+          <div class="dep-img">
+            <img src="https://images.unsplash.com/photo-1527689368864-3a821dbccc34?q=80&w=400&auto=format&fit=crop" alt="Psychiatry">
+            <span class="dep-badge">Clinical</span>
+          </div>
+          <div class="dep-content">
+            <h3 class="dep-title">Psychiatry</h3>
+            <p class="dep-desc">Cognitive therapy checkups, stress/depression diagnostic analysis, and professional neuropsychiatric medications management.</p>
+            <div class="dep-meta">
+              <span><i class="fas fa-user-md"></i> Dr. Mia Thompson</span>
+              <span><i class="fas fa-clock"></i> 1:00 PM - 7:00 PM</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 10. Emergency -->
+        <div class="card dep-card" data-type="clinical">
+          <div class="dep-img">
+            <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=400&auto=format&fit=crop" alt="Emergency">
+            <span class="dep-badge">Clinical</span>
+          </div>
+          <div class="dep-content">
+            <h3 class="dep-title">Emergency Ward</h3>
+            <p class="dep-desc">Acute medical response protocols, instant ventilation systems, trauma diagnostics, and critical operations triage.</p>
+            <div class="dep-meta">
+              <span><i class="fas fa-user-md"></i> Dr. Oliver Garcia</span>
+              <span><i class="fas fa-clock"></i> 24/7 Service</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 11. Radiology -->
+        <div class="card dep-card" data-type="diagnostics">
+          <div class="dep-img">
+            <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=400&auto=format&fit=crop" alt="Radiology">
+            <span class="dep-badge">Diagnostics</span>
+          </div>
+          <div class="dep-content">
+            <h3 class="dep-title">Radiology & Imaging</h3>
+            <p class="dep-desc">High-contrast CT scan arrays, MRI scans, standard clinical X-ray systems, and internal diagnostic mappings.</p>
+            <div class="dep-meta">
+              <span><i class="fas fa-user-md"></i> Dr. Emma Clark</span>
+              <span><i class="fas fa-clock"></i> 8:00 AM - 6:00 PM</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 12. Oncology -->
+        <div class="card dep-card" data-type="clinical">
+          <div class="dep-img">
+            <img src="https://images.unsplash.com/photo-1579684389782-64d84b5e901a?q=80&w=400&auto=format&fit=crop" alt="Oncology">
+            <span class="dep-badge">Clinical</span>
+          </div>
+          <div class="dep-content">
+            <h3 class="dep-title">Oncology</h3>
+            <p class="dep-desc">Therapeutic chemotherapy guidelines, targeted cancer scans, biopsy checkups, and hematological treatments.</p>
+            <div class="dep-meta">
+              <span><i class="fas fa-user-md"></i> Dr. Charlotte Lewis</span>
+              <span><i class="fas fa-clock"></i> 9:00 AM - 3:00 PM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="color: white; font-size: 1.5rem; margin-bottom: 20px;">
+          <i class="fas fa-hospital-alt"></i> CareGrid
+        </a>
+        <p>Providing advanced healthcare services, smart digital records, and professional diagnostics since 2012.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <div class="footer-links">
+          <a href="about.html">About Hospital</a>
+          <a href="doctors.html">Our Doctors</a>
+          <a href="appointments.html">Book Appointment</a>
+          <a href="billing.html">Billing Panel</a>
+          <a href="faq.html">FAQs</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Departments</h4>
+        <div class="footer-links">
+          <a href="departments.html">Cardiology</a>
+          <a href="departments.html">Neurology</a>
+          <a href="departments.html">Orthopedics</a>
+          <a href="departments.html">Pediatrics</a>
+          <a href="departments.html">Oncology</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Emergency Contact</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <div>
+            <strong>General Inquiries</strong>
+            <p>+1 (555) 234-5678</p>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-ambulance"></i>
+          <div>
+            <strong>Emergency Hotline</strong>
+            <p>+1 (555) 911-CARE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 CareGrid Hospital Management. All rights reserved.</p>
+      <p>Frontend Project &bull; Standard Static Mockup</p>
+    </div>
+  </footer>
+
+  <button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="js/script.js"></script>
+</body>
+</html>

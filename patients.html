@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View database of active hospital patient records, diseases, assigned doctors, and treatment statuses.">
+  <title>Patients Directory - CareGrid HMS</title>`n  <!-- Anti-FOUC: apply theme before CSS renders -->`n  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');</script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Loader Screen -->
+  <div id="loader" class="loader-overlay">
+    <div class="loader">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">CareGrid HMS...</div>
+    </div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div id="scroll-progress" class="scroll-progress"></div>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="logo">
+        <i class="fas fa-hospital-alt"></i> CareGrid
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="departments.html" class="nav-link">Departments</a>
+        <a href="doctors.html" class="nav-link">Doctors</a>
+        <a href="patients.html" class="nav-link active">Patients</a>
+        <a href="appointments.html" class="nav-link">Appointments</a>
+        <a href="prescriptions.html" class="nav-link">Prescriptions</a>
+        <a href="billing.html" class="nav-link">Billing</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="theme-toggle" class="nav-btn" aria-label="Toggle Dark Mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <a href="appointments.html" class="btn btn-book">Book Now</a>
+        <button class="mobile-nav-toggle" aria-label="Open Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <div class="breadcrumb-container">
+    <div class="container breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right" style="font-size: 0.75rem;"></i></span>
+      <span class="breadcrumb-current">Patients Directory</span>
+    </div>
+  </div>
+
+  <!-- Patient Directory Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="patient-header">
+        <div>
+          <h2 class="section-title" style="text-align: left; margin-bottom: 8px;">Hospital Patients Registry</h2>
+          <p style="color:var(--text-muted);">Manage patient records, diagnose diseases, view current admissions, and filter tables.</p>
+        </div>
+        <button class="btn btn-primary" id="add-patient-btn"><i class="fas fa-plus"></i> Add New Patient</button>
+      </div>
+      
+      <!-- Filters and search -->
+      <div class="patient-actions" style="margin-bottom: 24px;">
+        <div class="search-input-wrapper">
+          <i class="fas fa-search"></i>
+          <input type="text" id="patient-search" placeholder="Search by name, ID, or disease..." aria-label="Search Patients">
+        </div>
+        <select id="patient-status-filter" class="form-control" style="width: auto; min-width: 180px;" aria-label="Filter by Status">
+          <option value="all">All Statuses</option>
+          <option value="admitted">Admitted</option>
+          <option value="recovered">Recovered</option>
+          <option value="discharged">Discharged</option>
+        </select>
+      </div>
+      
+      <!-- Table View -->
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Patient ID</th>
+              <th>Patient Name</th>
+              <th>Age</th>
+              <th>Gender</th>
+              <th>Blood Group</th>
+              <th>Disease</th>
+              <th>Doctor Assigned</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="patient-table-body">
+            <!-- Dynamic rows inside script.js -->
+          </tbody>
+        </table>
+        
+        <!-- Pagination UI -->
+        <div class="pagination">
+          <div class="pagination-info" id="pagination-info">Showing 0 to 0 of 0 Patients</div>
+          <div class="pagination-buttons">
+            <button class="pagination-btn" id="btn-prev" disabled><i class="fas fa-chevron-left"></i> Prev</button>
+            <button class="pagination-btn" id="btn-next"><i class="fas fa-chevron-right"></i> Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Add Patient Modal Form -->
+  <div class="modal-overlay" id="patient-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Register New Patient</h3>
+        <button class="modal-close" id="close-patient-modal"><i class="fas fa-times"></i></button>
+      </div>
+      <form id="patient-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="pat-name">Patient Full Name</label>
+            <input type="text" id="pat-name" class="form-control" required placeholder="e.g. John Doe">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="pat-age">Age</label>
+              <input type="number" id="pat-age" class="form-control" required placeholder="Age">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="pat-gender">Gender</label>
+              <select id="pat-gender" class="form-control" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="pat-blood">Blood Group</label>
+              <select id="pat-blood" class="form-control" required>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="pat-disease">Diagnosed Disease / Symptom</label>
+            <input type="text" id="pat-disease" class="form-control" required placeholder="e.g. Chronic Asthma">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="pat-doc">Assigned Specialist</label>
+              <select id="pat-doc" class="form-control" required>
+                <option value="Dr. Sophia Bennett">Dr. Sophia Bennett</option>
+                <option value="Dr. Liam Anderson">Dr. Liam Anderson</option>
+                <option value="Dr. Olivia Taylor">Dr. Olivia Taylor</option>
+                <option value="Dr. Ethan Martinez">Dr. Ethan Martinez</option>
+                <option value="Dr. Ava Thomas">Dr. Ava Thomas</option>
+                <option value="Dr. Noah Harris">Dr. Noah Harris</option>
+                <option value="Dr. Isabella White">Dr. Isabella White</option>
+                <option value="Dr. Lucas Martin">Dr. Lucas Martin</option>
+                <option value="Dr. Mia Thompson">Dr. Mia Thompson</option>
+                <option value="Dr. Oliver Garcia">Dr. Oliver Garcia</option>
+                <option value="Dr. Emma Clark">Dr. Emma Clark</option>
+                <option value="Dr. Charlotte Lewis">Dr. Charlotte Lewis</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="pat-status">Admission Status</label>
+              <select id="pat-status" class="form-control" required>
+                <option value="admitted">Admitted</option>
+                <option value="recovered">Recovered</option>
+                <option value="discharged">Discharged</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('patient-modal').classList.remove('active')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Save Record</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="color: white; font-size: 1.5rem; margin-bottom: 20px;">
+          <i class="fas fa-hospital-alt"></i> CareGrid
+        </a>
+        <p>Providing advanced healthcare services, smart digital records, and professional diagnostics since 2012.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <div class="footer-links">
+          <a href="about.html">About Hospital</a>
+          <a href="doctors.html">Our Doctors</a>
+          <a href="appointments.html">Book Appointment</a>
+          <a href="billing.html">Billing Panel</a>
+          <a href="faq.html">FAQs</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Departments</h4>
+        <div class="footer-links">
+          <a href="departments.html">Cardiology</a>
+          <a href="departments.html">Neurology</a>
+          <a href="departments.html">Orthopedics</a>
+          <a href="departments.html">Pediatrics</a>
+          <a href="departments.html">Oncology</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Emergency Contact</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <div>
+            <strong>General Inquiries</strong>
+            <p>+1 (555) 234-5678</p>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-ambulance"></i>
+          <div>
+            <strong>Emergency Hotline</strong>
+            <p>+1 (555) 911-CARE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 CareGrid Hospital Management. All rights reserved.</p>
+      <p>Frontend Project &bull; Standard Static Mockup</p>
+    </div>
+  </footer>
+
+  <button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="js/script.js"></script>
+  <!-- Supabase Backend Integration -->
+  <script type="module" src="js/supabase-bridge.js"></script>
+</body>
+</html>

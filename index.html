@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CareGrid Advanced Hospital Management System. Easily manage appointments, patients records, prescriptions, medical diagnostics, billing and hospital operations.">
+  <title>CareGrid HMS - Advanced Hospital Management System</title>
+  <!-- Anti-FOUC: apply theme before CSS renders -->
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');</script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Loader Screen -->
+  <div id="loader" class="loader-overlay">
+    <div class="loader">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">CareGrid HMS...</div>
+    </div>
+  </div>
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" class="scroll-progress"></div>
+
+  <!-- Top Navigation Header -->
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="logo">
+        <i class="fas fa-hospital-alt"></i> CareGrid
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="departments.html" class="nav-link">Departments</a>
+        <a href="doctors.html" class="nav-link">Doctors</a>
+        <a href="patients.html" class="nav-link">Patients</a>
+        <a href="appointments.html" class="nav-link">Appointments</a>
+        <a href="prescriptions.html" class="nav-link">Prescriptions</a>
+        <a href="billing.html" class="nav-link">Billing</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="theme-toggle" class="nav-btn" aria-label="Toggle Dark Mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <a href="appointments.html" class="btn btn-book">Book Now</a>
+        <button class="mobile-nav-toggle" aria-label="Open Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <span class="hero-subtitle">Integrated Healthcare Solutions</span>
+      <h1 class="hero-title">Advanced Hospital Management System</h1>
+      <p class="hero-desc">Efficiently manage patients, doctors, appointments, prescriptions, billing, and hospital operations from one smart platform.</p>
+      <div class="hero-actions">
+        <a href="appointments.html" class="btn btn-primary">Book Appointment <i class="fas fa-calendar-check"></i></a>
+        <a href="about.html" class="btn btn-outline" style="border-color:white; color:white;">Learn More <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistics Section -->
+  <section class="stats-section">
+    <div class="container stats-grid">
+      <div class="stats-card">
+        <div class="stats-icon"><i class="fas fa-user-md"></i></div>
+        <div class="stats-info">
+          <h3 class="stat-number" data-target="250">0</h3>
+          <p>Doctors</p>
+        </div>
+      </div>
+      <div class="stats-card">
+        <div class="stats-icon"><i class="fas fa-procedures"></i></div>
+        <div class="stats-info">
+          <h3 class="stat-number" data-target="5000">0</h3>
+          <p>Patients</p>
+        </div>
+      </div>
+      <div class="stats-card">
+        <div class="stats-icon"><i class="fas fa-clinic-medical"></i></div>
+        <div class="stats-info">
+          <h3 class="stat-number" data-target="120">0</h3>
+          <p>Departments</p>
+        </div>
+      </div>
+      <div class="stats-card">
+        <div class="stats-icon"><i class="fas fa-clock"></i></div>
+        <div class="stats-info">
+          <h3 class="stat-number" data-target="24">0</h3>
+          <p>Emergency Services</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">HMS Features</span>
+        <h2 class="section-title">Core Operating Capabilities</h2>
+        <p class="section-desc">Our integrated platform facilitates seamless medical processes and management operations for medical workers and administration staff.</p>
+      </div>
+      <div class="features-grid">
+        <div class="card feature-card">
+          <div class="feature-icon-wrapper"><i class="fas fa-address-card"></i></div>
+          <h3 class="feature-title">Patient Records</h3>
+          <p class="feature-desc">Comprehensive visual indexing of all patient records, medical history diagnostics, and statuses.</p>
+        </div>
+        <div class="card feature-card">
+          <div class="feature-icon-wrapper"><i class="fas fa-user-nurse"></i></div>
+          <h3 class="feature-title">Doctor Management</h3>
+          <p class="feature-desc">Oversee available working hours, qualification listings, and specific department allocations.</p>
+        </div>
+        <div class="card feature-card">
+          <div class="feature-icon-wrapper"><i class="fas fa-laptop-medical"></i></div>
+          <h3 class="feature-title">Appointment Booking</h3>
+          <p class="feature-desc">Seamless appointment requests linked to department timelines and active staff calendars.</p>
+        </div>
+        <div class="card feature-card">
+          <div class="feature-icon-wrapper"><i class="fas fa-pills"></i></div>
+          <h3 class="feature-title">Prescription Management</h3>
+          <p class="feature-desc">Digitized prescribing, dosage guides, and direct notes printouts for simple pharmaceutical workflows.</p>
+        </div>
+        <div class="card feature-card">
+          <div class="feature-icon-wrapper"><i class="fas fa-file-invoice-dollar"></i></div>
+          <h3 class="feature-title">Billing System</h3>
+          <p class="feature-desc">Quick invoices generation accounting for tax, room charge details, and payment options.</p>
+        </div>
+        <div class="card feature-card">
+          <div class="feature-icon-wrapper"><i class="fas fa-notes-medical"></i></div>
+          <h3 class="feature-title">Medical Reports</h3>
+          <p class="feature-desc">Instantly download test files and physician diagnostics summaries cleanly formatted as PDFs.</p>
+        </div>
+        <div class="card feature-card">
+          <div class="feature-icon-wrapper"><i class="fas fa-ambulance"></i></div>
+          <h3 class="feature-title">Emergency Care</h3>
+          <p class="feature-desc">Constant access to on-duty staff, critical room numbers, and support hotlines.</p>
+        </div>
+        <div class="card feature-card">
+          <div class="feature-icon-wrapper"><i class="fas fa-chart-line"></i></div>
+          <h3 class="feature-title">Hospital Analytics</h3>
+          <p class="feature-desc">Visualize incoming patient statistics, monthly cashflows, and active capacity trends.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="section-padding why-section">
+    <div class="container why-grid">
+      <div class="why-img">
+        <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=600&auto=format&fit=crop" alt="Hospital Facility">
+      </div>
+      <div>
+        <div class="section-header" style="text-align:left; margin-bottom:30px;">
+          <span class="section-tag">Value Proposition</span>
+          <h2 class="section-title">Setting Standards in Professional Care</h2>
+          <p class="section-desc">CareGrid integrates technology, modern medical protocols, and experienced clinicians to provide high-quality services.</p>
+        </div>
+        <div class="why-list">
+          <div class="why-item">
+            <div class="why-icon"><i class="fas fa-hospital-symbol"></i></div>
+            <div class="why-details">
+              <h4>Modern Infrastructure</h4>
+              <p>Top-tier clinical equipment, digital operating tables, and advanced lab diagnostics centers.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
+            <div class="why-details">
+              <h4>Experienced Doctors</h4>
+              <p>Certified clinical experts with verified records, publications, and professional board status.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><i class="fas fa-headset"></i></div>
+            <div class="why-details">
+              <h4>24/7 Patient Support</h4>
+              <p>Helpdesks and emergency wards constantly active to address direct clinical requests.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><i class="fas fa-folder-open"></i></div>
+            <div class="why-details">
+              <h4>Digital Health Records</h4>
+              <p>Safe data structures stored inside local cache contexts allowing seamless lookups.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><i class="fas fa-hand-holding-usd"></i></div>
+            <div class="why-details">
+              <h4>Affordable Healthcare</h4>
+              <p>Transparent fee listings, insurance packages support, and cost-efficient clinic consultations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Patient Stories</span>
+        <h2 class="section-title">What Our Patients Say</h2>
+        <p class="section-desc">We are committed to delivering the best healthcare experience. Here is feedback from some of our patients.</p>
+      </div>
+      <div class="testimonial-carousel">
+        <div class="testimonial-track">
+          <div class="testimonial-slide">
+            <p class="testimonial-quote">"The billing calculations were clear, and booking was completely digital. Dr. Sophia Bennett diagnosed my cardiovascular parameters instantly. I feel highly confident recommending CareGrid."</p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=150&auto=format&fit=crop" class="testimonial-avatar" alt="Sarah Cooper">
+              <div class="author-info">
+                <div class="author-name">Sarah Cooper</div>
+                <div class="author-role">Recovered Patient</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-slide">
+            <p class="testimonial-quote">"Managing medical records and prescriptions has never been this smooth. I downloaded my migraine dosage guidelines printout in seconds. Truly a professional experience."</p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&auto=format&fit=crop" class="testimonial-avatar" alt="David Miller">
+              <div class="author-info">
+                <div class="author-name">David Miller</div>
+                <div class="author-role">Neurology Outpatient</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-slide">
+            <p class="testimonial-quote">"Outstanding facilities. The emergency response protocols were active 24/7. My billing invoices and room allocations were computed perfectly, helping me get covered via insurance."</p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=150&auto=format&fit=crop" class="testimonial-avatar" alt="Thomas Wilson">
+              <div class="author-info">
+                <div class="author-name">Thomas Wilson</div>
+                <div class="author-role">Admitted Patient</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-dots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="newsletter-section">
+    <div class="container newsletter-content">
+      <h2 class="newsletter-title">Subscribe to Health Alerts</h2>
+      <p class="newsletter-desc">Get the latest clinical bulletins, healthy living articles, and scheduling alerts delivered directly to your inbox.</p>
+      <form id="newsletter-form" class="newsletter-form">
+        <input type="email" placeholder="Your Email Address" required aria-label="Email Address">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="color: white; font-size: 1.5rem; margin-bottom: 20px;">
+          <i class="fas fa-hospital-alt"></i> CareGrid
+        </a>
+        <p>Providing advanced healthcare services, smart digital records, and professional diagnostics since 2012.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <div class="footer-links">
+          <a href="about.html">About Hospital</a>
+          <a href="doctors.html">Our Doctors</a>
+          <a href="appointments.html">Book Appointment</a>
+          <a href="billing.html">Billing Panel</a>
+          <a href="faq.html">FAQs</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Departments</h4>
+        <div class="footer-links">
+          <a href="departments.html">Cardiology</a>
+          <a href="departments.html">Neurology</a>
+          <a href="departments.html">Orthopedics</a>
+          <a href="departments.html">Pediatrics</a>
+          <a href="departments.html">Oncology</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Emergency Contact</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <div>
+            <strong>General Inquiries</strong>
+            <p>+1 (555) 234-5678</p>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-ambulance"></i>
+          <div>
+            <strong>Emergency Hotline</strong>
+            <p>+1 (555) 911-CARE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 CareGrid Hospital Management. All rights reserved.</p>
+      <p>Frontend Project &bull; Standard Static Mockup</p>
+    </div>
+  </footer>
+
+  <button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="js/script.js"></script>
+</body>
+</html>

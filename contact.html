@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get in touch with CareGrid clinic, locate our center on map, or contact emergency ambulance services.">
+  <title>Contact Us - CareGrid HMS</title>`n  <!-- Anti-FOUC: apply theme before CSS renders -->`n  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');</script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Loader Screen -->
+  <div id="loader" class="loader-overlay">
+    <div class="loader">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">CareGrid HMS...</div>
+    </div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div id="scroll-progress" class="scroll-progress"></div>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="logo">
+        <i class="fas fa-hospital-alt"></i> CareGrid
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="departments.html" class="nav-link">Departments</a>
+        <a href="doctors.html" class="nav-link">Doctors</a>
+        <a href="patients.html" class="nav-link">Patients</a>
+        <a href="appointments.html" class="nav-link">Appointments</a>
+        <a href="prescriptions.html" class="nav-link">Prescriptions</a>
+        <a href="billing.html" class="nav-link">Billing</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="theme-toggle" class="nav-btn" aria-label="Toggle Dark Mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <a href="appointments.html" class="btn btn-book">Book Now</a>
+        <button class="mobile-nav-toggle" aria-label="Open Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <div class="breadcrumb-container">
+    <div class="container breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right" style="font-size: 0.75rem;"></i></span>
+      <span class="breadcrumb-current">Contact Us</span>
+    </div>
+  </div>
+
+  <!-- Contact Us Main Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Communication</span>
+        <h2 class="section-title">Get In Touch With CareGrid</h2>
+        <p class="section-desc">Have questions about clinical registrations, diagnostics booking, or pricing? Reach our support desk or send queries directly.</p>
+      </div>
+      
+      <div class="contact-grid">
+        <!-- Left: Details and Maps -->
+        <div>
+          <div class="contact-info-cards">
+            <div class="card contact-info-card">
+              <div class="contact-info-icon"><i class="fas fa-map-marked-alt"></i></div>
+              <div class="contact-info-details">
+                <h4>Hospital Location</h4>
+                <p>120 Healthcare Avenue, Suite 400<br>Medical City District, NY 10016</p>
+              </div>
+            </div>
+            
+            <div class="card contact-info-card">
+              <div class="contact-info-icon"><i class="fas fa-phone-alt"></i></div>
+              <div class="contact-info-details">
+                <h4>Contact Numbers</h4>
+                <p>General desk: +1 (555) 234-5678<br>Emergency hotline: +1 (555) 911-CARE</p>
+              </div>
+            </div>
+            
+            <div class="card contact-info-card">
+              <div class="contact-info-icon"><i class="fas fa-envelope-open-text"></i></div>
+              <div class="contact-info-details">
+                <h4>Email Support</h4>
+                <p>helpdesk@caregridhms.com<br>info@caregridhms.com</p>
+              </div>
+            </div>
+            
+            <div class="card contact-info-card">
+              <div class="contact-info-icon"><i class="fas fa-history"></i></div>
+              <div class="contact-info-details">
+                <h4>Working Timings</h4>
+                <p>Clinical OPD: Mon - Sat (8:00 AM - 8:00 PM)<br>Emergency Ward: 24 Hours / 7 Days a week</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Map Placement -->
+          <div class="map-placeholder">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.6175402094254!2d-73.98685368459392!3d40.74844047932828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1m3!1d2000!2d-73.98!3d40.74!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" aria-label="Google Map location of CareGrid Hospital"></iframe>
+          </div>
+        </div>
+        
+        <!-- Right: Inquiry Form -->
+        <div class="card">
+          <h3 style="margin-bottom: 20px; color:var(--secondary); font-size: 1.2rem;"><i class="fas fa-envelope"></i> Send Support Inquiry</h3>
+          <form id="contact-form">
+            <div class="form-group">
+              <label class="form-label" for="con-name">Full Name</label>
+              <input type="text" id="con-name" class="form-control" required placeholder="Full Name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="con-email">Email Address</label>
+              <input type="email" id="con-email" class="form-control" required placeholder="e.g. name@mail.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="con-subject">Subject</label>
+              <input type="text" id="con-subject" class="form-control" required placeholder="Subject parameter">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="con-message">Inquiry Details</label>
+              <textarea id="con-message" class="form-control" required placeholder="Write details about scheduling issues, billing complaints, or diagnostic report failures..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="color: white; font-size: 1.5rem; margin-bottom: 20px;">
+          <i class="fas fa-hospital-alt"></i> CareGrid
+        </a>
+        <p>Providing advanced healthcare services, smart digital records, and professional diagnostics since 2012.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <div class="footer-links">
+          <a href="about.html">About Hospital</a>
+          <a href="doctors.html">Our Doctors</a>
+          <a href="appointments.html">Book Appointment</a>
+          <a href="billing.html">Billing Panel</a>
+          <a href="faq.html">FAQs</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Departments</h4>
+        <div class="footer-links">
+          <a href="departments.html">Cardiology</a>
+          <a href="departments.html">Neurology</a>
+          <a href="departments.html">Orthopedics</a>
+          <a href="departments.html">Pediatrics</a>
+          <a href="departments.html">Oncology</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Emergency Contact</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <div>
+            <strong>General Inquiries</strong>
+            <p>+1 (555) 234-5678</p>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-ambulance"></i>
+          <div>
+            <strong>Emergency Hotline</strong>
+            <p>+1 (555) 911-CARE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 CareGrid Hospital Management. All rights reserved.</p>
+      <p>Frontend Project &bull; Standard Static Mockup</p>
+    </div>
+  </footer>
+
+  <button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="js/script.js"></script>
+</body>
+</html>

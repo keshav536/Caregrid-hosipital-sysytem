@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find answers to common questions about doctor scheduling, insurance packages, billing receipts, and report diagnostics.">
+  <title>Frequently Asked Questions - CareGrid HMS</title>`n  <!-- Anti-FOUC: apply theme before CSS renders -->`n  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');</script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Loader Screen -->
+  <div id="loader" class="loader-overlay">
+    <div class="loader">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">CareGrid HMS...</div>
+    </div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div id="scroll-progress" class="scroll-progress"></div>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="logo">
+        <i class="fas fa-hospital-alt"></i> CareGrid
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="departments.html" class="nav-link">Departments</a>
+        <a href="doctors.html" class="nav-link">Doctors</a>
+        <a href="patients.html" class="nav-link">Patients</a>
+        <a href="appointments.html" class="nav-link">Appointments</a>
+        <a href="prescriptions.html" class="nav-link">Prescriptions</a>
+        <a href="billing.html" class="nav-link">Billing</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="faq.html" class="nav-link active">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="theme-toggle" class="nav-btn" aria-label="Toggle Dark Mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <a href="appointments.html" class="btn btn-book">Book Now</a>
+        <button class="mobile-nav-toggle" aria-label="Open Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <div class="breadcrumb-container">
+    <div class="container breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right" style="font-size: 0.75rem;"></i></span>
+      <span class="breadcrumb-current">FAQ</span>
+    </div>
+  </div>
+
+  <!-- FAQ Accordion Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Clinical Helpdesk</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-desc">Got questions about scheduling, invoices, prescriptions, or emergency services? Read answers to common patient questions below.</p>
+      </div>
+      
+      <div class="faq-accordion">
+        <!-- Q1: Appointment booking -->
+        <div class="faq-item active">
+          <div class="faq-header">
+            <span class="faq-question">How do I book an appointment online?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-body">
+            <div class="faq-content">
+              You can schedule visits by navigating to the <a href="appointments.html" style="color:var(--primary); font-weight:500;">Appointments</a> section. Select your specialty clinical department (e.g. Cardiology, Orthopedics), assign an available doctor, check a calendar date, pick a time slot, and submit the booking form.
+            </div>
+          </div>
+        </div>
+        
+        <!-- Q2: Insurance -->
+        <div class="faq-item">
+          <div class="faq-header">
+            <span class="faq-question">Do you support health insurance packages?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-body">
+            <div class="faq-content">
+              Yes, CareGrid integrates with leading medical insurance groups. When generating invoices inside the <a href="billing.html" style="color:var(--primary); font-weight:500;">Billing Panel</a>, you can select 'Insurance Coverage' as the payment method to compute policy deductible rates.
+            </div>
+          </div>
+        </div>
+        
+        <!-- Q3: Emergency services -->
+        <div class="faq-item">
+          <div class="faq-header">
+            <span class="faq-question">How can I contact trauma ambulance services?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-body">
+            <div class="faq-content">
+              Our emergency ambulance line is active 24 hours a day, 7 days a week. You can reach our critical triage hotline immediately at <strong>+1 (555) 911-CARE</strong> for dispatch coordination.
+            </div>
+          </div>
+        </div>
+        
+        <!-- Q4: Visiting hours -->
+        <div class="faq-item">
+          <div class="faq-header">
+            <span class="faq-question">What are the general visiting hours?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-body">
+            <div class="faq-content">
+              Outpatient ward visits are allowed between <strong>10:00 AM to 1:00 PM</strong> and <strong>4:00 PM to 7:00 PM</strong> daily. For Intensive Care Units (ICU), visiting hours are restricted to 11:00 AM to 12:00 PM, subject to physician clearance.
+            </div>
+          </div>
+        </div>
+        
+        <!-- Q5: Medical reports -->
+        <div class="faq-item">
+          <div class="faq-header">
+            <span class="faq-question">How do I download diagnostic reports and prescriptions?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-body">
+            <div class="faq-content">
+              Active medical prescriptions can be viewed inside the <a href="prescriptions.html" style="color:var(--primary); font-weight:500;">Prescriptions</a> page. Each record contains print and PDF download buttons to keep physical copies of dosage directives.
+            </div>
+          </div>
+        </div>
+        
+        <!-- Q6: Payments -->
+        <div class="faq-item">
+          <div class="faq-header">
+            <span class="faq-question">What payment methods do you support?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-body">
+            <div class="faq-content">
+              We support standard billing channels including Cash payment, Credit/Debit card swipes, UPI digital transfers, and direct health insurance claims processing.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="color: white; font-size: 1.5rem; margin-bottom: 20px;">
+          <i class="fas fa-hospital-alt"></i> CareGrid
+        </a>
+        <p>Providing advanced healthcare services, smart digital records, and professional diagnostics since 2012.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <div class="footer-links">
+          <a href="about.html">About Hospital</a>
+          <a href="doctors.html">Our Doctors</a>
+          <a href="appointments.html">Book Appointment</a>
+          <a href="billing.html">Billing Panel</a>
+          <a href="faq.html">FAQs</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Departments</h4>
+        <div class="footer-links">
+          <a href="departments.html">Cardiology</a>
+          <a href="departments.html">Neurology</a>
+          <a href="departments.html">Orthopedics</a>
+          <a href="departments.html">Pediatrics</a>
+          <a href="departments.html">Oncology</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Emergency Contact</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <div>
+            <strong>General Inquiries</strong>
+            <p>+1 (555) 234-5678</p>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-ambulance"></i>
+          <div>
+            <strong>Emergency Hotline</strong>
+            <p>+1 (555) 911-CARE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 CareGrid Hospital Management. All rights reserved.</p>
+      <p>Frontend Project &bull; Standard Static Mockup</p>
+    </div>
+  </footer>
+
+  <button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="js/script.js"></script>
+</body>
+</html>

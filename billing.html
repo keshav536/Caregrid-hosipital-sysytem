@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manage clinical invoices, consultations pricing, lab rates, and generate patients billing sheets.">
+  <title>Billing & Invoices - CareGrid HMS</title>`n  <!-- Anti-FOUC: apply theme before CSS renders -->`n  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');</script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Loader Screen -->
+  <div id="loader" class="loader-overlay">
+    <div class="loader">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">CareGrid HMS...</div>
+    </div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div id="scroll-progress" class="scroll-progress"></div>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="logo">
+        <i class="fas fa-hospital-alt"></i> CareGrid
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="departments.html" class="nav-link">Departments</a>
+        <a href="doctors.html" class="nav-link">Doctors</a>
+        <a href="patients.html" class="nav-link">Patients</a>
+        <a href="appointments.html" class="nav-link">Appointments</a>
+        <a href="prescriptions.html" class="nav-link">Prescriptions</a>
+        <a href="billing.html" class="nav-link active">Billing</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="theme-toggle" class="nav-btn" aria-label="Toggle Dark Mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <a href="appointments.html" class="btn btn-book">Book Now</a>
+        <button class="mobile-nav-toggle" aria-label="Open Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <div class="breadcrumb-container">
+    <div class="container breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right" style="font-size: 0.75rem;"></i></span>
+      <span class="breadcrumb-current">Billing Management</span>
+    </div>
+  </div>
+
+  <!-- Billing Grid -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Billing Dashboard</span>
+        <h2 class="section-title">Invoice Generator Panel</h2>
+        <p class="section-desc">Create billing records, calculate consultation/laboratory/room rates, deduct discounts, apply GST, and choose payment systems.</p>
+      </div>
+      
+      <div class="billing-grid">
+        <!-- Left: Form Input -->
+        <div class="card">
+          <h3 style="margin-bottom: 20px; color:var(--secondary); font-size: 1.2rem;"><i class="fas fa-file-invoice"></i> Compute Invoice Parameters</h3>
+          <form id="billing-form">
+            <div class="form-group">
+              <label class="form-label" for="bill-patient">Patient Name</label>
+              <input type="text" id="bill-patient" class="form-control" required placeholder="Select or type Patient name">
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="bill-fee">Consultation Fee ($)</label>
+                <input type="number" id="bill-fee" class="form-control" min="0" placeholder="0.00" value="0">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="bill-lab">Laboratory Charges ($)</label>
+                <input type="number" id="bill-lab" class="form-control" min="0" placeholder="0.00" value="0">
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="bill-med">Medicines Expenses ($)</label>
+                <input type="number" id="bill-med" class="form-control" min="0" placeholder="0.00" value="0">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="bill-room">Ward / ICU Room Charges ($)</label>
+                <input type="number" id="bill-room" class="form-control" min="0" placeholder="0.00" value="0">
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="bill-discount">Discount Deductions ($)</label>
+                <input type="number" id="bill-discount" class="form-control" min="0" placeholder="0.00" value="0">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="bill-method">Payment Method</label>
+                <select id="bill-method" class="form-control">
+                  <option value="Cash">Cash Payment</option>
+                  <option value="Card">Card Swipe</option>
+                  <option value="UPI">UPI Digital Transfer</option>
+                  <option value="Insurance">Insurance Coverage</option>
+                </select>
+              </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Generate & Save Invoice</button>
+          </form>
+        </div>
+        
+        <!-- Right: Print Preview Invoice -->
+        <div class="card invoice-preview-card printable-area">
+          <div class="invoice-preview-header">
+            <h2 style="color:var(--primary); font-weight:700;"><i class="fas fa-file-invoice-dollar"></i> CareGrid Medical</h2>
+            <p style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Tax Invoice &bull; HMS Billing Service</p>
+          </div>
+          
+          <div class="invoice-info-row">
+            <span class="invoice-info-label">Invoice Number</span>
+            <span class="invoice-info-value" id="pr-invoice">INV-000000</span>
+          </div>
+          <div class="invoice-info-row">
+            <span class="invoice-info-label">Billing Date</span>
+            <span class="invoice-info-value" id="pr-date">MM/DD/YYYY</span>
+          </div>
+          <div class="invoice-info-row" style="margin-bottom: 20px;">
+            <span class="invoice-info-label">Patient Name</span>
+            <span class="invoice-info-value" id="pr-patient" style="font-weight: 600;">Patient Name</span>
+          </div>
+          
+          <table class="invoice-items-table">
+            <thead>
+              <tr style="border-bottom: 1.5px solid var(--card-border); color:var(--text-muted);">
+                <th style="padding: 6px 0; font-size: 0.8rem; font-weight:600;">Fee Parameter</th>
+                <th style="padding: 6px 0; text-align: right; font-size: 0.8rem; font-weight:600;">Subtotal ($)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 8px 0; color:var(--text-muted);">Consultation Doctor Visit</td>
+                <td style="padding: 8px 0; text-align: right; font-weight:500;" id="pr-fee">$0.00</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; color:var(--text-muted);">Laboratory Test Scans</td>
+                <td style="padding: 8px 0; text-align: right; font-weight:500;" id="pr-lab">$0.00</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; color:var(--text-muted);">Pharmacy Medications Cost</td>
+                <td style="padding: 8px 0; text-align: right; font-weight:500;" id="pr-med">$0.00</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; color:var(--text-muted);">Room Ward Rent</td>
+                <td style="padding: 8px 0; text-align: right; font-weight:500;" id="pr-room">$0.00</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <div class="invoice-summary-box">
+            <div class="invoice-info-row">
+              <span class="invoice-info-label">Gross Subtotal</span>
+              <span class="invoice-info-value" id="pr-subtotal">$0.00</span>
+            </div>
+            <div class="invoice-info-row">
+              <span class="invoice-info-label">Discount Applied</span>
+              <span class="invoice-info-value" id="pr-discount" style="color:var(--danger)">-$0.00</span>
+            </div>
+            <div class="invoice-info-row">
+              <span class="invoice-info-label">CGST/SGST Tax (18%)</span>
+              <span class="invoice-info-value" id="pr-gst">$0.00</span>
+            </div>
+            <div class="invoice-total-row">
+              <span>Grand Total</span>
+              <span id="pr-total" style="color:var(--primary); font-weight:700;">$0.00</span>
+            </div>
+          </div>
+          
+          <div class="pres-actions">
+            <button class="btn btn-outline btn-sm" onclick="window.print()"><i class="fas fa-print"></i> Print Receipt</button>
+            <button class="btn btn-accent btn-sm" onclick="downloadInvoicePdf()"><i class="fas fa-file-pdf"></i> Download PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="color: white; font-size: 1.5rem; margin-bottom: 20px;">
+          <i class="fas fa-hospital-alt"></i> CareGrid
+        </a>
+        <p>Providing advanced healthcare services, smart digital records, and professional diagnostics since 2012.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <div class="footer-links">
+          <a href="about.html">About Hospital</a>
+          <a href="doctors.html">Our Doctors</a>
+          <a href="appointments.html">Book Appointment</a>
+          <a href="billing.html">Billing Panel</a>
+          <a href="faq.html">FAQs</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Departments</h4>
+        <div class="footer-links">
+          <a href="departments.html">Cardiology</a>
+          <a href="departments.html">Neurology</a>
+          <a href="departments.html">Orthopedics</a>
+          <a href="departments.html">Pediatrics</a>
+          <a href="departments.html">Oncology</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Emergency Contact</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <div>
+            <strong>General Inquiries</strong>
+            <p>+1 (555) 234-5678</p>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-ambulance"></i>
+          <div>
+            <strong>Emergency Hotline</strong>
+            <p>+1 (555) 911-CARE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 CareGrid Hospital Management. All rights reserved.</p>
+      <p>Frontend Project &bull; Standard Static Mockup</p>
+    </div>
+  </footer>
+
+  <button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="js/script.js"></script>
+  <!-- Supabase Backend Integration -->
+  <script type="module" src="js/supabase-bridge.js"></script>
+</body>
+</html>

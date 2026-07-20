@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign in to your CareGrid Hospital Management System account.">
+  <title>Login - CareGrid HMS</title>
+  <!-- Anti-FOUC -->
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');</script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Existing Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    /* ─── Auth Layout ─────────────────────────────────────── */
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0F172A 0%, #1e3a8a 50%, #0F172A 100%);
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .auth-page::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,99,235,0.15), transparent 70%);
+      top: -200px;
+      right: -200px;
+      pointer-events: none;
+    }
+
+    .auth-page::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(20,184,166,0.1), transparent 70%);
+      bottom: -150px;
+      left: -150px;
+      pointer-events: none;
+    }
+
+    .auth-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-xl);
+      padding: 48px 40px;
+      width: 100%;
+      max-width: 460px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+      position: relative;
+      z-index: 1;
+      animation: fade-up 0.5s ease-out;
+    }
+
+    .auth-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .auth-logo i {
+      font-size: 1.75rem;
+    }
+
+    .auth-heading {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 6px;
+      transition: var(--transition);
+    }
+
+    [data-theme="dark"] .auth-heading {
+      color: var(--text-main);
+    }
+
+    .auth-subheading {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 32px;
+    }
+
+    /* ─── Password Toggle ─────────────────────────────────── */
+    .input-icon-wrapper {
+      position: relative;
+    }
+
+    .input-icon-wrapper .input-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .input-icon-wrapper .form-control {
+      padding-left: 44px;
+      padding-right: 44px;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.95rem;
+      padding: 0;
+      transition: var(--transition);
+    }
+
+    .password-toggle:hover {
+      color: var(--primary);
+    }
+
+    /* ─── Remember Me & Forgot ────────────────────────────── */
+    .auth-extras {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      font-size: 0.875rem;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      color: var(--text-muted);
+      user-select: none;
+    }
+
+    .checkbox-label input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .forgot-link {
+      color: var(--primary);
+      font-weight: 500;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .forgot-link:hover {
+      color: var(--primary-hover);
+      text-decoration: underline;
+    }
+
+    /* ─── Alert / Error Box ───────────────────────────────── */
+    .auth-alert {
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .auth-alert.error {
+      background-color: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: var(--danger);
+      display: flex;
+    }
+
+    .auth-alert.success {
+      background-color: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: var(--success);
+      display: flex;
+    }
+
+    /* ─── Auth Button with Spinner ────────────────────────── */
+    .btn-auth {
+      width: 100%;
+      padding: 14px;
+      font-size: 1rem;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      position: relative;
+    }
+
+    .btn-auth .btn-spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+
+    .btn-auth.loading .btn-spinner {
+      display: inline-block;
+    }
+
+    .btn-auth.loading .btn-label {
+      opacity: 0.8;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ─── Divider ─────────────────────────────────────────── */
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 24px 0;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    .auth-divider::before,
+    .auth-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: var(--card-border);
+    }
+
+    /* ─── Secondary Link ──────────────────────────────────── */
+    .auth-footer-text {
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-top: 20px;
+    }
+
+    .auth-footer-text a {
+      color: var(--primary);
+      font-weight: 600;
+      margin-left: 4px;
+    }
+
+    .auth-footer-text a:hover {
+      text-decoration: underline;
+    }
+
+    /* ─── Theme Toggle on Auth Pages ──────────────────────── */
+    .auth-theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: white;
+      font-size: 1rem;
+      transition: var(--transition);
+      z-index: 100;
+    }
+
+    .auth-theme-toggle:hover {
+      background-color: rgba(255,255,255,0.2);
+      transform: rotate(15deg);
+    }
+  </style>
+</head>
+<body style="background: #0F172A; padding: 0; margin: 0;">
+
+  <!-- Theme Toggle -->
+  <button id="theme-toggle" class="auth-theme-toggle" aria-label="Toggle Dark Mode">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <div class="auth-page">
+    <div class="auth-card">
+      <!-- Logo -->
+      <div class="auth-logo">
+        <i class="fas fa-hospital-alt"></i>
+        <span>CareGrid</span>
+      </div>
+
+      <!-- Heading -->
+      <h1 class="auth-heading">Welcome Back</h1>
+      <p class="auth-subheading">Sign in to access the clinical management console.</p>
+
+      <!-- Alert Box -->
+      <div id="auth-alert" class="auth-alert" role="alert">
+        <i class="fas fa-exclamation-circle"></i>
+        <span id="auth-alert-msg"></span>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" novalidate>
+        <!-- Email -->
+        <div class="form-group">
+          <label class="form-label" for="login-email">Email Address</label>
+          <div class="input-icon-wrapper">
+            <i class="fas fa-envelope input-icon"></i>
+            <input
+              type="email"
+              id="login-email"
+              class="form-control"
+              placeholder="doctor@caregrid.com"
+              autocomplete="email"
+              required
+            >
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label class="form-label" for="login-password">Password</label>
+          <div class="input-icon-wrapper">
+            <i class="fas fa-lock input-icon"></i>
+            <input
+              type="password"
+              id="login-password"
+              class="form-control"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              required
+            >
+            <button type="button" class="password-toggle" id="toggle-login-pwd" aria-label="Show/Hide Password">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Remember Me & Forgot Password -->
+        <div class="auth-extras">
+          <label class="checkbox-label" for="remember-me">
+            <input type="checkbox" id="remember-me">
+            Remember me
+          </label>
+          <a href="forgot-password.html" class="forgot-link">Forgot Password?</a>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="login-btn" class="btn btn-primary btn-auth">
+          <div class="btn-spinner"></div>
+          <span class="btn-label"><i class="fas fa-sign-in-alt"></i> Sign In</span>
+        </button>
+      </form>
+
+      <div class="auth-divider">or</div>
+
+      <!-- Sign Up Redirect -->
+      <a href="signup.html" class="btn btn-outline btn-auth">
+        <i class="fas fa-user-plus"></i> Create New Account
+      </a>
+
+      <p class="auth-footer-text">
+        Don't have an account?
+        <a href="signup.html">Sign up for free</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Firebase Auth Module Script -->
+  <script type="module">
+    import { signIn, watchAuthState } from "./auth.js";
+
+    // If already logged in, skip to dashboard
+    watchAuthState((user) => {
+      if (user) {
+        window.location.href = "dashboard.html";
+      }
+    });
+
+    // ── Theme Toggle ──────────────────────────────────────
+    const themeToggle = document.getElementById("theme-toggle");
+    const applyTheme = (theme) => {
+      document.documentElement.setAttribute("data-theme", theme);
+      localStorage.setItem("theme", theme);
+      themeToggle.querySelector("i").className = theme === "dark" ? "fas fa-sun" : "fas fa-moon";
+    };
+    applyTheme(localStorage.getItem("theme") || "light");
+    themeToggle.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme");
+      applyTheme(current === "dark" ? "light" : "dark");
+    });
+
+    // ── Password Toggle ───────────────────────────────────
+    document.getElementById("toggle-login-pwd").addEventListener("click", function () {
+      const pwdInput = document.getElementById("login-password");
+      const icon = this.querySelector("i");
+      if (pwdInput.type === "password") {
+        pwdInput.type = "text";
+        icon.className = "fas fa-eye-slash";
+      } else {
+        pwdInput.type = "password";
+        icon.className = "fas fa-eye";
+      }
+    });
+
+    // ── Alert Helpers ─────────────────────────────────────
+    function showAlert(message, type = "error") {
+      const alertBox = document.getElementById("auth-alert");
+      const alertMsg = document.getElementById("auth-alert-msg");
+      alertBox.className = `auth-alert ${type}`;
+      alertMsg.textContent = message;
+      alertBox.style.display = "flex";
+      alertBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    function clearAlert() {
+      const alertBox = document.getElementById("auth-alert");
+      alertBox.style.display = "none";
+      alertBox.className = "auth-alert";
+    }
+
+    // ── Form Validation ───────────────────────────────────
+    function validateLoginForm(email, password) {
+      if (!email || !email.trim()) {
+        showAlert("Please enter your email address.");
+        return false;
+      }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showAlert("Please enter a valid email address.");
+        return false;
+      }
+      if (!password || password.length < 6) {
+        showAlert("Password must be at least 6 characters.");
+        return false;
+      }
+      return true;
+    }
+
+    // ── Login Form Submit ─────────────────────────────────
+    const loginForm = document.getElementById("login-form");
+    const loginBtn  = document.getElementById("login-btn");
+
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      clearAlert();
+
+      const email    = document.getElementById("login-email").value.trim();
+      const password = document.getElementById("login-password").value;
+
+      if (!validateLoginForm(email, password)) return;
+
+      // Disable button & show spinner
+      loginBtn.disabled = true;
+      loginBtn.classList.add("loading");
+      loginBtn.querySelector(".btn-label").innerHTML = "<i class='fas fa-circle-notch fa-spin'></i> Signing In...";
+
+      const result = await signIn(email, password);
+
+      if (result.success) {
+        showAlert("Login successful! Redirecting to dashboard...", "success");
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 800);
+      } else {
+        showAlert(result.error);
+        loginBtn.disabled = false;
+        loginBtn.classList.remove("loading");
+        loginBtn.querySelector(".btn-label").innerHTML = "<i class='fas fa-sign-in-alt'></i> Sign In";
+      }
+    });
+  </script>
+</body>
+</html>

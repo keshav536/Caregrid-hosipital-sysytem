@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Request online hospital visits, consultation checks, or specialized outpatient scheduling.">
+  <title>Book Appointments - CareGrid HMS</title>`n  <!-- Anti-FOUC: apply theme before CSS renders -->`n  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');</script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Loader Screen -->
+  <div id="loader" class="loader-overlay">
+    <div class="loader">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">CareGrid HMS...</div>
+    </div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div id="scroll-progress" class="scroll-progress"></div>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="logo">
+        <i class="fas fa-hospital-alt"></i> CareGrid
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="departments.html" class="nav-link">Departments</a>
+        <a href="doctors.html" class="nav-link">Doctors</a>
+        <a href="patients.html" class="nav-link">Patients</a>
+        <a href="appointments.html" class="nav-link active">Appointments</a>
+        <a href="prescriptions.html" class="nav-link">Prescriptions</a>
+        <a href="billing.html" class="nav-link">Billing</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="theme-toggle" class="nav-btn" aria-label="Toggle Dark Mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <a href="appointments.html" class="btn btn-book">Book Now</a>
+        <button class="mobile-nav-toggle" aria-label="Open Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <div class="breadcrumb-container">
+    <div class="container breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-separator"><i class="fas fa-chevron-right" style="font-size: 0.75rem;"></i></span>
+      <span class="breadcrumb-current">Appointments booking</span>
+    </div>
+  </div>
+
+  <!-- Appointments Main Grid -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header" style="max-width: 700px;">
+        <span class="section-tag">Scheduling Panel</span>
+        <h2 class="section-title" style="text-align: center;">Book Clinical Appointments</h2>
+        <p class="section-desc">Fill out the scheduling form or select a date directly on the calendar grid to block a clinic session with our medical specialists.</p>
+      </div>
+      
+      <div class="appointment-grid">
+        <!-- Left: Form & Calendar -->
+        <div>
+          <!-- Calendar -->
+          <div class="calendar-placeholder">
+            <div class="calendar-header">
+              <button class="nav-btn" style="width:30px; height:30px;"><i class="fas fa-chevron-left" style="font-size: 0.8rem;"></i></button>
+              <span class="calendar-month" id="calendar-month">July 2026</span>
+              <button class="nav-btn" style="width:30px; height:30px;"><i class="fas fa-chevron-right" style="font-size: 0.8rem;"></i></button>
+            </div>
+            <div class="calendar-grid">
+              <div class="calendar-day-name">Su</div>
+              <div class="calendar-day-name">Mo</div>
+              <div class="calendar-day-name">Tu</div>
+              <div class="calendar-day-name">We</div>
+              <div class="calendar-day-name">Th</div>
+              <div class="calendar-day-name">Fr</div>
+              <div class="calendar-day-name">Sa</div>
+              <!-- Days will render inside script.js -->
+            </div>
+          </div>
+          
+          <!-- Booking Form -->
+          <div class="card">
+            <h3 style="margin-bottom: 20px; color:var(--secondary); font-size: 1.2rem;"><i class="fas fa-edit"></i> Patient Registration Form</h3>
+            <form id="appointment-form">
+              <div class="form-group">
+                <label class="form-label" for="apt-name">Patient Name</label>
+                <input type="text" id="apt-name" class="form-control" required placeholder="Full Name">
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="apt-age">Age</label>
+                  <input type="number" id="apt-age" class="form-control" required placeholder="Age">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="apt-gender">Gender</label>
+                  <select id="apt-gender" class="form-control" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="apt-phone">Phone Number</label>
+                  <input type="tel" id="apt-phone" class="form-control" required placeholder="e.g. +1 555-0199">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="apt-email">Email Address</label>
+                  <input type="email" id="apt-email" class="form-control" required placeholder="e.g. name@mail.com">
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="apt-department">Department</label>
+                  <select id="apt-department" class="form-control" required>
+                    <option value="">Select Department</option>
+                    <option value="General Medicine">General Medicine</option>
+                    <option value="Cardiology">Cardiology</option>
+                    <option value="Orthopedics">Orthopedics</option>
+                    <option value="Neurology">Neurology</option>
+                    <option value="Dermatology">Dermatology</option>
+                    <option value="Pediatrics">Pediatrics</option>
+                    <option value="ENT">ENT</option>
+                    <option value="Gynecology">Gynecology</option>
+                    <option value="Psychiatry">Psychiatry</option>
+                    <option value="Emergency">Emergency</option>
+                    <option value="Radiology">Radiology</option>
+                    <option value="Oncology">Oncology</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="apt-doctor">Assigned Doctor</label>
+                  <select id="apt-doctor" class="form-control" required>
+                    <option value="">Select Doctor</option>
+                    <!-- Populated dynamically based on selected Department -->
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="apt-date">Date</label>
+                  <input type="date" id="apt-date" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="apt-time">Preferred Time</label>
+                  <select id="apt-time" class="form-control" required>
+                    <option value="09:00 AM">09:00 AM</option>
+                    <option value="10:00 AM">10:00 AM</option>
+                    <option value="11:00 AM">11:00 AM</option>
+                    <option value="12:00 PM">12:00 PM</option>
+                    <option value="02:00 PM">02:00 PM</option>
+                    <option value="03:00 PM">03:00 PM</option>
+                    <option value="04:00 PM">04:00 PM</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="apt-symptoms">Brief Symptoms</label>
+                <textarea id="apt-symptoms" class="form-control" required placeholder="Describe chest tightness, severe headaches, allergy reactions, etc."></textarea>
+              </div>
+              
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Booking Request</button>
+            </form>
+          </div>
+        </div>
+        
+        <!-- Right: Current Wards/Tabs of Appointments list -->
+        <div>
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="upcoming">Upcoming</button>
+            <button class="tab-btn" data-tab="completed">Completed</button>
+            <button class="tab-btn" data-tab="cancelled">Cancelled</button>
+          </div>
+          
+          <div id="upcoming-list" class="tab-content active">
+            <!-- Dynamic Upcoming Cards inside script.js -->
+          </div>
+          <div id="completed-list" class="tab-content">
+            <!-- Dynamic Completed Cards -->
+          </div>
+          <div id="cancelled-list" class="tab-content">
+            <!-- Dynamic Cancelled Cards -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="color: white; font-size: 1.5rem; margin-bottom: 20px;">
+          <i class="fas fa-hospital-alt"></i> CareGrid
+        </a>
+        <p>Providing advanced healthcare services, smart digital records, and professional diagnostics since 2012.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <div class="footer-links">
+          <a href="about.html">About Hospital</a>
+          <a href="doctors.html">Our Doctors</a>
+          <a href="appointments.html">Book Appointment</a>
+          <a href="billing.html">Billing Panel</a>
+          <a href="faq.html">FAQs</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Departments</h4>
+        <div class="footer-links">
+          <a href="departments.html">Cardiology</a>
+          <a href="departments.html">Neurology</a>
+          <a href="departments.html">Orthopedics</a>
+          <a href="departments.html">Pediatrics</a>
+          <a href="departments.html">Oncology</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Emergency Contact</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <div>
+            <strong>General Inquiries</strong>
+            <p>+1 (555) 234-5678</p>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-ambulance"></i>
+          <div>
+            <strong>Emergency Hotline</strong>
+            <p>+1 (555) 911-CARE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 CareGrid Hospital Management. All rights reserved.</p>
+      <p>Frontend Project &bull; Standard Static Mockup</p>
+    </div>
+  </footer>
+
+  <button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="js/script.js"></script>
+  <!-- Supabase Backend Integration -->
+  <script type="module" src="js/supabase-bridge.js"></script>
+</body>
+</html>
